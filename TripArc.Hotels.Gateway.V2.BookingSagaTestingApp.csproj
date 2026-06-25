@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TripArc.Hotels.Gateway.V2.Client" Version="1.0.1936" />
+    <PackageReference Include="TripArc.Hotels.Gateway.V2.Shared" Version="1.0.1936" />
+    <PackageReference Include="NServiceBus" Version="9.2.8" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="5.1.2" />
+    <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="2.0.1" />
+    <PackageReference Include="TripArc.Core.MessageBus" Version="3.6.7-beta" />
+  </ItemGroup>
+
+</Project>
