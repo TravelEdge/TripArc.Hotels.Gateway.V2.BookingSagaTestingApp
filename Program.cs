@@ -438,6 +438,14 @@ static async Task FixSubscription(
     ServiceBusAdministrationClient admin,
     string topic, string subscription, string typeFullName)
 {
+    // This app reads events with a ServiceBusProcessor instead of an NSB handler,
+    // so NSB never auto-creates the subscription on the per-type topic. Create the
+    // topic/subscription here if they don't already exist (e.g. a fresh namespace).
+    if (!await admin.TopicExistsAsync(topic))
+        await admin.CreateTopicAsync(topic);
+    if (!await admin.SubscriptionExistsAsync(topic, subscription))
+        await admin.CreateSubscriptionAsync(new CreateSubscriptionOptions(topic, subscription));
+
     var subProps = (await admin.GetSubscriptionAsync(topic, subscription)).Value;
 
     // NSB sets ForwardTo to an http:// URL that ASB silently ignores. Clear it so
